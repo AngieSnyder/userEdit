@@ -32,9 +32,14 @@ function updateUser() {
         reviewer: reviewer == 'on' ? true: false,
         admin: admin == 'on' ? true: false,
     }
-    $.post(url+"Change", user)
-        .then((resp)=>{
-            console.log(resp);
+    $.ajax(url+"Change", {
+        data: JSON.stringify(user),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: (resp) => {
+            console.log(resp)
+        },
+        type: 'POST'
         });
 }
 function getUserByPrimaryKey(id){
